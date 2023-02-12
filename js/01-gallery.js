@@ -1,8 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-// console.log(galleryItems);
-
 const refs = {
   gallery: document.querySelector(".gallery"),
 };
@@ -39,20 +37,16 @@ function createGalleryMurkup(images) {
 
 function onImageHandler(e) {
   e.preventDefault();
-  
-  const OriginalImage = e.target.closest(".gallery__link").getAttribute("href");
+
+  const originalImage = e.target.dataset.source;
   instance = basicLightbox.create(`
-  <img src="${OriginalImage}" alt="${e.target.getAttribute("alt")}" width="800" height="600">
+  <img src="${originalImage}" alt="${e.target.getAttribute("alt")}" width="800" height="600">
   `);
 
   instance.show();
 
   window.addEventListener('keydown', closeModalByEscape);
 
-  //   console.log(e.currentTarget);
-  //   console.log(e.target);
-  // console.log(e.target.parentNode);
-  // console.log(e.target.closest('.gallery__link').getAttribute('href'));
 };
 
 function closeModalByEscape(evt) {
@@ -60,5 +54,4 @@ function closeModalByEscape(evt) {
     instance.close();
     window.removeEventListener('keydown', closeModalByEscape);
   }
-  // console.log(evt.key);
 };
